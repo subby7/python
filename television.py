@@ -5,9 +5,6 @@ class Television:
     max_channel = 3
 
     def __init__(self):
-        '''
-        This function sets the default values
-        '''
         self.__status = False
         self.__muted = False
         self.__volume = Television.min_volume
