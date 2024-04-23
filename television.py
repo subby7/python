@@ -5,54 +5,57 @@ class Television:
     max_channel = 3
 
     def __init__(self):
-        self.status = False
-        self.muted = False
-        self.volume = Television.min_volume
-        self.channel = Television.min_channel
-        self.previous_volume = None
+        '''
+        This function sets the default values
+        '''
+        self.__status = False
+        self.__muted = False
+        self.__volume = Television.min_volume
+        self.__channel = Television.min_channel
+        self.__previous_volume = None
 
     def power(self):
-        if not self.status:
-            self.status = True
+        if not self.__status:
+            self.__status = True
         else:
-            self.status = False
+            self.__status = False
     def mute(self):
-        if self.status:
-            if not self.muted:
-                self.previous_volume = self.volume
-                self.muted = True
+        if self.__status:
+            if not self.__muted:
+                self.__previous_volume = self.__volume
+                self.__muted = True
             else:
-                self.volume = self.previous_volume
-                self.muted = False
+                self.__volume = self.__previous_volume
+                self.__muted = False
 
     def channel_up(self):
-        if self.status:
-            if self.channel == Television.max_channel:
-                self.channel = Television.min_channel
+        if self.__status:
+            if self.__channel == Television.max_channel:
+                self.__channel = Television.min_channel
             else:
-                self.channel += 1
+                self.__channel += 1
 
     def channel_down(self):
-        if self.status:
-            if self.channel > Television.min_channel:
-                self.channel -= 1
+        if self.__status:
+            if self.__channel > Television.min_channel:
+                self.__channel -= 1
             else:
-                self.channel = Television.max_channel
+                self.__channel = Television.max_channel
 
     def volume_up(self):
-        if self.status:
-            if self.muted:
+        if self.__status:
+            if self.__muted:
                 self.mute()
-            if self.volume < Television.max_volume:
-                self.volume += 1
+            if self.__volume < Television.max_volume:
+                self.__volume += 1
 
 
     def volume_down(self):
-        if self.status:
-            if self.muted:
+        if self.__status:
+            if self.__muted:
                 self.mute()
-            if self.volume > Television.min_volume:
-                self.volume -= 1
+            if self.__volume > Television.min_volume:
+                self.__volume -= 1
 
     def __str__(self) -> str:
-        return f'Power = [{self.status}], Channel = [{self.channel}], Volume = [{self.volume}]'
+        return f'Power = [{self.__status}], Channel = [{self.__channel}], Volume = [{self.__volume}]'
